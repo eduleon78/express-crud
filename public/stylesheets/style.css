@@ -1,0 +1,9 @@
+a {
+    color: #00b7ff;
+}
+
+#main_map {
+    width:  1200px;
+    height: 600px;
+    margin: 50px;
+}
