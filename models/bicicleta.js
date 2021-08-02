@@ -6,7 +6,7 @@ var Bicicleta = function(id, color, modelo, ubicacion) {
 }
 
 Bicicleta.prototype.toString = function () {
-    return 'id' + this.id + " | color: " + this.color;
+    return 'id: ' + this.id + " | color: " + this.color;
 }
 
 Bicicleta.allBicis = [];
@@ -31,8 +31,8 @@ Bicicleta.removeById = function(aBiciId){
     }
 }
 
-var a = new Bicicleta(1, 'rojo', 'urbana', []);
-var b = new Bicicleta(1, 'rojo', 'urbana', []);
+var a = new Bicicleta(1, 'rojo', 'urbana', [10.980197, -63.846129]);
+var b = new Bicicleta(1, 'rojo', 'urbana', [10.982609, -63.844369]);
 
 Bicicleta.add(a);
 Bicicleta.add(b);

@@ -7,9 +7,8 @@ var logger = require('morgan');
 // importamos las rutas desde la carpeta router
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var bicicletaRouter = require('./routes/bicicletas');
-
-const exp = require('constants');
+var bicicletasRouter = require('./routes/bicicletas');
+var bicicletasAPIRouter = require('./routes/api/bicicletas');
 
 var app = express();
 
@@ -27,7 +26,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // definimos las rutas 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/bicicletas', bicicletaRouter);
+app.use('/bicicletas', bicicletasRouter);
+app.use('/api/bicicletas', bicicletasAPIRouter);
 
 //catch 404 and forward to error handler (paginas que no existen)
 app.use(function(req, res, next) {
