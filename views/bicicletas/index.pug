@@ -8,7 +8,7 @@ block content
       tr 
         th(scope='col') #
         th(scope='col') Color
-        th(scope='col') Moderlo
+        th(scope='col') Modelo
         th(scope='col') Ubicacion
         th(scope='col')
         th(scope='col')  
@@ -26,4 +26,4 @@ block content
             form.inline(method="post" action='bicicletas/' + bici.id + '/delete')
                 input(type="hidden" name='id' value= bici.id)
                 button.link-button(type='submit' name='submit_param' value='submit_value' class='btn')
-                  = 'Emininar'  
+                  = 'Eliminar'  
