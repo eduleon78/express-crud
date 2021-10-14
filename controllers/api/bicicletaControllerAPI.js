@@ -1,23 +1,26 @@
 var Bicicleta = require('../../models/bicicleta');
 
 exports.bicicleta_list = function(req, res) {
-    res.status(200).json({
-        bicicletas: Bicicleta.allBicis
+    Bicicleta.allBicis(function(err, bicis){
+        res.status(200).json({
+            bicicletas: bicis
+        });
     });
-}
+};
 
 exports.bicicleta_create = function(req, res){
-    var bici = new Bicicleta(req.body.id, req.body.color, req.body.modelo);
+    var bici = new Bicicleta(req.body.code, req.body.color, req.body.modelo);
     bici.ubicacion = [req.body.lat, req.body.lng];
 
-    Bicicleta.add(bici);
-
-    res.status(200).json({
-        bicicleta: bici
+    Bicicleta.add(bici, function(err, newBici){
+        res.status(200).json({
+            bicicleta: bici,
+        });
     });
-}
+};
 
 exports.bicicleta_delete = function(req, res){
-    Bicicleta.removeById(req.body.id);
-    res.status(204).send();
+    Bicicleta.removeByCode(req.body.code, function(err, bici){
+        res.status(204).send();
+    });
 }

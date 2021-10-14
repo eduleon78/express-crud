@@ -1,7 +1,7 @@
 extends ../layout 
 
 block content
-  a.btn.btn-success(href="/usuarios/create") Nuevo Usuario
+  a.btn.btn-success(href='/usuarios/create') Nuevo Usuario
 
   br
   br  
@@ -26,7 +26,7 @@ block content
           td
             a.btn(href= "usuarios/" + usuario.id + '/update') Editar 
           td   
-            form.inline(method="post" action='usuarios/' + usuario.id + '/delete')
-                input(type="hidden" name='id' value= usuario.id)
+            form.inline(method='post' action='usuarios/' + usuario.id + '/delete')
+                input(type='hidden' name='id' value= usuario.id)
                 button.link-button.btn-danger(type='submit' name='submit_param' value='submit_value' class='btn')
                   = 'Eliminar'  

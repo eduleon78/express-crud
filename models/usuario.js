@@ -1,11 +1,11 @@
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
-var Reserva = require('./reserva');
+let Reserva = require('./reserva');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 const saltRounds = 10;
 
-const Token = require('../models/token');
+const Token = require('./token');
 const mailer = require('../mailer/mailer');
 
 var Schema = mongoose.Schema;
@@ -13,7 +13,7 @@ var Schema = mongoose.Schema;
 const validateEmail = function(email){
     const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     return re.test(email);
-}
+};
 
 var usuarioSchema = new Schema({
     nombre: {
@@ -80,6 +80,28 @@ usuarioSchema.methods.enviar_email_bienvenida = function(cb) {
 
             console.log('Se ha enviado un email de bienvenida a: ' + email_destination + '.');
         });
+    });
+}
+
+usuarioSchema.methods.resetPassword = function(cb){
+    const token = new Token({_userId: this.id, token: crypto.randomBytes(16).toString('hex')});
+    const email_destination = this.email;
+    token.save(function (err) {
+        if (err) { return cb(err); }
+        
+        const mailOptions = {
+            from: 'no-reply@express.com',
+            to: email_destination,
+            subject: 'Reseteo de password de cuenta',
+            text: 'Hola,\n\n' + 'Por favor, para resetear el password de su cuuenta haga click en este link : \n' + 'http://localhost:5000' + '\/resetPassword\/' + token.token + '.\n' 
+        };
+
+        mailer.sendMail(options, function (err){
+            if (err) { return cb(err); }
+
+            console.log('Se envio un email para resetear el password a: ' + email_destination + '.');
+        });
+        cb(null); 
     });
 }
 

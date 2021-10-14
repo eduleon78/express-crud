@@ -37,7 +37,7 @@ module.exports = {
                 res.render('usuarios/create', {errors: err.errors, usuario: new Usuario({nombre: req.body.nombre, email: req.body.email})});
             }else{
                 nuevoUsuario.enviar_email_bienvenida();
-                res.render('/usuarios');
+                res.redirect('/usuarios');
             }
         });
     },

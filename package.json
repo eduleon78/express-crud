@@ -22,18 +22,21 @@
     "cookie-parser": "^1.4.5",
     "debug": "^4.3.2",
     "express": "^4.17.1",
+    "express-session": "^1.17.2",
     "http-errors": "^1.8.0",
     "moment": "^2.29.1",
-    "mongoose": "^5.13.7",
+    "mongoose": "^6.0.6",
     "mongoose-unique-validator": "^2.0.3",
     "morgan": "^1.10.0",
     "nodemailer": "^6.6.3",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "pug": "^3.0.2",
     "request": "^2.88.2",
     "routes": "^2.1.0"
   },
   "devDependencies": {
-    "jasmine": "^3.8.0",
+    "jasmine": "^3.9.0",
     "nodemon": "^2.0.12"
   }
 }
